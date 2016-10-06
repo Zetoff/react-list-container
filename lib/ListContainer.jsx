@@ -158,7 +158,10 @@ const ListContainer = React.createClass({
 });
 
 ListContainer.propTypes = {
-  collection: React.PropTypes.object.isRequired,  // the collection to paginate
+  collection: React.PropTypes.oneOfType([         // the collection to paginate
+    React.PropTypes.object,
+    React.PropTypes.func
+  ]).isRequired,
   selector: React.PropTypes.object,               // the selector used in collection.find()
   options: React.PropTypes.object,                // the options used in collection.find()
   publication: React.PropTypes.string,            // the publication to subscribe to

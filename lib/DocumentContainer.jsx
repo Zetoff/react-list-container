@@ -83,7 +83,10 @@ const DocumentContainer = React.createClass({
 
 
 DocumentContainer.propTypes = {
-  collection: React.PropTypes.object.isRequired,
+  collection: React.PropTypes.oneOfType([
+    React.PropTypes.object,
+    React.PropTypes.func
+  ]).isRequired,
   selector: React.PropTypes.object.isRequired,
   publication: React.PropTypes.string,
   terms: React.PropTypes.any,
