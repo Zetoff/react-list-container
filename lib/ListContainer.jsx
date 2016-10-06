@@ -15,6 +15,10 @@ const ListContainer = React.createClass({
   },
 
   mixins: [ReactMeteorData],
+
+  getCollection(prop) {
+    return typeof prop === "function" ? prop() : prop;
+  },
   
   getMeteorData() {
 

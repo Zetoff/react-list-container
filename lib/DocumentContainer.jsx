@@ -6,6 +6,10 @@ const DocumentContainer = React.createClass({
 
   mixins: [ReactMeteorData],
   
+  getCollection(prop) {
+    return typeof prop === "function" ? prop() : prop;
+  },
+
   getMeteorData() {
 
     // subscribe if necessary
