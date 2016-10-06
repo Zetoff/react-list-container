@@ -49,7 +49,7 @@ const ListContainer = React.createClass({
 
     const selector = this.props.selector || {};
     const options = {...this.props.options, limit: this.state.limit}; 
-    const cursor = this.props.collection.find(selector, options);
+    const cursor = this.getCollection(this.props.collection).find(selector, options);
 
     data.count = cursor.count();
 
@@ -64,7 +64,7 @@ const ListContainer = React.createClass({
         // loop over each join
         this.props.joins.forEach(join => {
 
-          const collection = typeof join.collection === "function" ? join.collection() : join.collection;
+          const collection = this.getCollection(join.collection);
           const joinLimit = join.limit ? join.limit : 0;
 
           if (join.foreignProperty) {

@@ -18,7 +18,7 @@ const DocumentContainer = React.createClass({
       const subscription = subscribeFunction(this.props.publication, this.props.terms);
     }
 
-    const collection = this.props.collection;
+    const collection = this.getCollection(this.props.collection);
     const document = collection.findOne(this.props.selector);
 
     // look for any specified joins
@@ -41,7 +41,7 @@ const DocumentContainer = React.createClass({
 
           // get the property containing the id or ids
           const joinProperty = document[join.localProperty];
-          const collection = typeof join.collection === "function" ? join.collection() : join.collection;
+          const collection = this.getCollection(join.collection);
 
           // perform the join
           if (Array.isArray(joinProperty)) { // join property is an array of ids
