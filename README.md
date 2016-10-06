@@ -46,9 +46,22 @@ The list container accepts the following props:
 
 #### Basic Props
 
-##### `collection` (object) [required]
+##### `collection` (object|function) [required]
 
-The Meteor collection in which to look for data.
+The Meteor collection in which to look for data, or alternatively a function returning the collection or an Astronomy class.
+
+Example:
+
+```js
+// meteor collection
+collection = Categories;
+
+// passing an astronomy class
+const Category = AstronomyClass.create({
+  collection: Categories,
+});
+collection = () => Category;
+```
 
 ##### `selector` (object)
 
@@ -120,7 +133,7 @@ joins = [
   },
   {
     foreignProperty: "postId",
-    collection: Comments,
+    collection: () => Comments,
     joinAs: "comments"
   }
 ]
